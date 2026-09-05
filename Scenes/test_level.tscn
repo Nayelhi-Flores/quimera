@@ -1,0 +1,123 @@
+[gd_scene format=3 uid="uid://takaajxg3xcn"]
+
+[ext_resource type="PackedScene" uid="uid://bv2mrkjxgpn7l" path="res://Entities/Player/player.tscn" id="1_iti4p"]
+[ext_resource type="Script" uid="uid://drmorxedyflk8" path="res://Mechanics/GameCamera.cs" id="2_dtjkg"]
+[ext_resource type="PackedScene" uid="uid://bx2yvqnf85arf" path="res://Scenes/test_damage.tscn" id="3_eglq2"]
+[ext_resource type="PackedScene" uid="uid://d3qa70qsde0gq" path="res://Scenes/enemy.tscn" id="4_rsyfn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dtjkg"]
+
+[node name="TestLevel" type="Node2D" unique_id=562379286]
+
+[node name="Player" parent="." unique_id=1183293170 instance=ExtResource("1_iti4p")]
+position = Vector2(150, 267)
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=1061177078]
+position = Vector2(150, 307)
+scale = Vector2(64, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=915418469]
+shape = SubResource("RectangleShape2D_dtjkg")
+
+[node name="ColorRect" type="ColorRect" parent="Floor" unique_id=1099794629]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+
+[node name="Floor2" type="StaticBody2D" parent="." unique_id=729171769]
+position = Vector2(1133, 801)
+scale = Vector2(64, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor2" unique_id=1741191110]
+shape = SubResource("RectangleShape2D_dtjkg")
+
+[node name="ColorRect" type="ColorRect" parent="Floor2" unique_id=1526487432]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+
+[node name="Floor3" type="StaticBody2D" parent="." unique_id=1935765651]
+position = Vector2(-1081, 247)
+scale = Vector2(64, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor3" unique_id=1687337473]
+shape = SubResource("RectangleShape2D_dtjkg")
+
+[node name="ColorRect" type="ColorRect" parent="Floor3" unique_id=1498286365]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+
+[node name="Floor4" type="StaticBody2D" parent="." unique_id=1155118602]
+position = Vector2(-1195, 182)
+scale = Vector2(64, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor4" unique_id=1178558067]
+shape = SubResource("RectangleShape2D_dtjkg")
+
+[node name="ColorRect" type="ColorRect" parent="Floor4" unique_id=129554465]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+
+[node name="Floor5" type="StaticBody2D" parent="." unique_id=1138459516]
+position = Vector2(-1301, 117)
+scale = Vector2(64, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor5" unique_id=1445898662]
+shape = SubResource("RectangleShape2D_dtjkg")
+
+[node name="ColorRect" type="ColorRect" parent="Floor5" unique_id=1581308771]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+
+[node name="Floor6" type="StaticBody2D" parent="." unique_id=408006516]
+position = Vector2(-1423, 52)
+scale = Vector2(64, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor6" unique_id=1765232171]
+shape = SubResource("RectangleShape2D_dtjkg")
+
+[node name="ColorRect" type="ColorRect" parent="Floor6" unique_id=1609142192]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+
+[node name="Floor7" type="StaticBody2D" parent="." unique_id=956735321]
+position = Vector2(-1570, -21)
+scale = Vector2(64, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor7" unique_id=930251352]
+shape = SubResource("RectangleShape2D_dtjkg")
+
+[node name="ColorRect" type="ColorRect" parent="Floor7" unique_id=182444968]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+
+[node name="GameCamera" type="Camera2D" parent="." unique_id=833631123 node_paths=PackedStringArray("_target")]
+script = ExtResource("2_dtjkg")
+_target = NodePath("../Player")
+
+[node name="test_damage" parent="." unique_id=619522726 instance=ExtResource("3_eglq2")]
+position = Vector2(1277, 757)
+Damage = 10
+
+[node name="test_damage2" parent="." unique_id=1867240159 instance=ExtResource("3_eglq2")]
+position = Vector2(1375, 755)
+
+[node name="test_damage3" parent="." unique_id=536401295 instance=ExtResource("3_eglq2")]
+position = Vector2(998, 757)
+Damage = 5
+
+[node name="Enemy" parent="." unique_id=1471629270 instance=ExtResource("4_rsyfn")]
+position = Vector2(593, 783)
+PatrolDistance = 200.0

@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://bv2mrkjxgpn7l"]
+
+[ext_resource type="Script" uid="uid://d1mvxywwddp8e" path="res://Mechanics/Components/HealthComponent.cs" id="1_3uyv8"]
+[ext_resource type="Script" uid="uid://b7ykwpn581tet" path="res://Entities/Player/PlayerController.cs" id="1_lu8i8"]
+[ext_resource type="Texture2D" uid="uid://cnwqa3775hygh" path="res://icon.svg" id="2_lu8i8"]
+[ext_resource type="Script" uid="uid://djd54oirlltpy" path="res://Mechanics/Components/HurtboxComponent.cs" id="4_tekja"]
+[ext_resource type="Script" uid="uid://ck8kfobsxs3f0" path="res://Mechanics/Components/HitboxComponent.cs" id="5_5c2io"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tekja"]
+size = Vector2(59, 60)
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_lu8i8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5c2io"]
+size = Vector2(46, 43)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4wf4l"]
+size = Vector2(22, 28.5)
+
+[node name="Player" type="CharacterBody2D" unique_id=1183293170 node_paths=PackedStringArray("AttackHitbox", "AttackCollision", "DisplaySprite", "Health")]
+collision_layer = 2
+script = ExtResource("1_lu8i8")
+AttackHitbox = NodePath("AttackHitbox")
+AttackCollision = NodePath("AttackHitbox/CollisionShape2D")
+DisplaySprite = NodePath("Sprite2D")
+Health = NodePath("HealthComponent")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=576809046]
+position = Vector2(0, -32)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_lu8i8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1246809817]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_tekja")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1733040468]
+script = ExtResource("1_3uyv8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=491667791]
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1247083002]
+active = false
+tree_root = SubResource("AnimationNodeStateMachine_lu8i8")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="HurtboxComponent" type="Area2D" parent="." unique_id=123303895 node_paths=PackedStringArray("_healthComponent")]
+modulate = Color(0.40392157, 0.16862746, 1, 1)
+collision_layer = 8
+collision_mask = 16
+script = ExtResource("4_tekja")
+_healthComponent = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=194889169]
+position = Vector2(0, -31.5)
+shape = SubResource("RectangleShape2D_5c2io")
+
+[node name="AttackHitbox" type="Area2D" parent="." unique_id=561777836]
+collision_layer = 32
+collision_mask = 16
+script = ExtResource("5_5c2io")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox" unique_id=874505715]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_4wf4l")
+disabled = true

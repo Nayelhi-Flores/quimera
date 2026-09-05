@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bx2yvqnf85arf"]
+
+[ext_resource type="Script" uid="uid://ck8kfobsxs3f0" path="res://Mechanics/Components/HitboxComponent.cs" id="1_1xc41"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ilg3"]
+size = Vector2(32, 34)
+
+[node name="test_damage" type="Area2D" unique_id=619522726]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_1xc41")
+Damage = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1943263755]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_3ilg3")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=953158364]
+offset_right = 32.0
+offset_bottom = 32.0
+color = Color(0.7777572, 0.1494529, 0.24575257, 1)

@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://d3qa70qsde0gq"]
+
+[ext_resource type="Script" uid="uid://tjlvur0akrgo" path="res://Entities/Enemies/EnemyBase.cs" id="1_0830c"]
+[ext_resource type="Texture2D" uid="uid://cnwqa3775hygh" path="res://icon.svg" id="2_ghaa6"]
+[ext_resource type="Script" uid="uid://d1mvxywwddp8e" path="res://Mechanics/Components/HealthComponent.cs" id="3_1dp5w"]
+[ext_resource type="Script" uid="uid://djd54oirlltpy" path="res://Mechanics/Components/HurtboxComponent.cs" id="4_auwsv"]
+[ext_resource type="Script" uid="uid://ck8kfobsxs3f0" path="res://Mechanics/Components/HitboxComponent.cs" id="5_8uf12"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_po0sg"]
+size = Vector2(126, 125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_haro7"]
+size = Vector2(127.5, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0830c"]
+size = Vector2(127, 126)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1471629270 node_paths=PackedStringArray("DisplaySprite", "Health", "Hurtbox", "Hitbox", "FloorDetector")]
+collision_layer = 4
+script = ExtResource("1_0830c")
+DisplaySprite = NodePath("DisplaySprite")
+Health = NodePath("HealthComponent")
+Hurtbox = NodePath("HurtboxComponent")
+Hitbox = NodePath("Hitbox")
+FloorDetector = NodePath("FloorDetector")
+
+[node name="DisplaySprite" type="Sprite2D" parent="." unique_id=551915186]
+modulate = Color(0.96862745, 0.1764706, 0.3254902, 1)
+position = Vector2(0, -64)
+texture = ExtResource("2_ghaa6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=327609199]
+position = Vector2(0, -64)
+shape = SubResource("RectangleShape2D_po0sg")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1838026698]
+script = ExtResource("3_1dp5w")
+MaxHealth = 30
+
+[node name="HurtboxComponent" type="Area2D" parent="." unique_id=86619031 node_paths=PackedStringArray("_healthComponent")]
+position = Vector2(0, -64)
+collision_layer = 16
+collision_mask = 32
+script = ExtResource("4_auwsv")
+_healthComponent = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=1594239937]
+shape = SubResource("RectangleShape2D_haro7")
+debug_color = Color(0.08627451, 0.95686275, 0.13725491, 0.41960785)
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1087661216]
+position = Vector2(0, -64)
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("5_8uf12")
+Damage = 25
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1510692553]
+shape = SubResource("RectangleShape2D_0830c")
+
+[node name="FloorDetector" type="RayCast2D" parent="." unique_id=1075395011]
+position = Vector2(32, -5)
+target_position = Vector2(0, 15)
